@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title>Delete Pilot</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+	<nav th:replace="fragments/fragment :: deletePilot"></nav>
+
+<h3>Apakah Anda yakin untuk menghapus data ini?</h3>
+
+<form th:action="@{/pilot/delete/{licenseNumber}(licenseNumber=${pilot.licenseNumber})}" th:object="${pilot}" method="POST">
+    License Number : <br>
+    <input type="text" th:field="*{licenseNumber}" name="licenseNumber" readonly/> <br>
+    Name: <br>
+    <input type="text" th:field="*{name}" name="name" readonly/> <br>
+    Fly Hour : <br>
+    <input type="number" th:field="*{flyHour}" name="flyHour" readonly/> <br><br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>View All Flight</title>
+    	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+	
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #A1A0A2;
+  text-align: left;
+  padding: 5px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+</head>
+
+<body>
+	<nav th:replace="fragments/fragment :: listAllFlight"></nav>
+    <h2>Daftar Penerbangan</h2>
+    <table border="1">
+        <tr> 
+       		<th> No </th>
+            <th> Flight Number </th>
+            <th> Pilot Name </th>
+            <th> License Number Pilot </th>
+            <th> Pilot Fly Hour </th>
+            <th> Origin </th>
+            <th> Destination </th>
+            <th> Time </th> 
+        </tr>
+        <th:block th:each="flight, i : ${flight}">
+        <tr> 
+        	<td align=Center th:text="${i.count}"></td>
+            <td align=Center th:text="${flight.flightNumber}"></td>
+            <td align=Center th:text="${flight.pilot.name}"></td>
+            <td align=Center th:text="${flight.pilot.licenseNumber}"></td>
+            <td align=Center th:text="${flight.pilot.flyHour}"></td>
+            <td align=Center th:text="${flight.origin}"></td>
+            <td align=Center th:text="${flight.destination}"></td>
+            <td align=Center th:text="${flight.time}"></td> 
+        </tr>
+    </th:block>
+</table><br>
+</body>
+</html>
