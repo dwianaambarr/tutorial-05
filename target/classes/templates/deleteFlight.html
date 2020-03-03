@@ -3,8 +3,11 @@
 
 <head>
 	<title>Data berhasil dihapus</title>
+	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
 <a th:href="@{'/pilot/view/'+${pilot.licenseNumber}}">Back to View</a>
 	<h2>Data berhasil dihapus</h2>
 </body>

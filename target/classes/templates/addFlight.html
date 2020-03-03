@@ -7,21 +7,42 @@
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-	<nav th:replace="fragments/fragment :: addFlight"></nav>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<h2>Welcome!</h2>
 
 	<h3>Tambah Penerbangan</h3>
-	<form th:action="@{/flight/add}" th:object="${flight}" method="POST">
-	<input type="hidden" th:field="*{pilot}"/>
-		Flight Number: <br>
-		<input type="text" name="flightNumber" /><br>
-		Origin: <br>
-		<input type="text" name="origin" /><br>
-		Destination: <br>
-		<input type="text" name="destination" /><br>
-		Time: <br>
-		<input type="date" name="time" /><br>
-		<button type="submit">Submit</button>
+	<form th:action="@{/flight/add/}+ ${pilot.licenseNumber}" th:object="${pilot}" method="POST">
+		<input type="hidden" th:field="*{licenseNumber}"></input>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>Flight Number</th>
+						<th>Origin</th>
+						<th>Destination</th>
+						<th>Time</th>
+						<!-- Latihan 2 
+						Menambah Form Handling-->
+						<th><button type="submit" name="addRow">Add Flight</button></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="flight,rowStat : *{pilotFlight}">
+						<td><input class="form-control" type="text"
+								th:field="*{pilotFlight[__${rowStat.index}__].flightNumber}" /></td>
+						<td><input class="form-control" type="text"
+								th:field="*{pilotFlight[__${rowStat.index}__].origin}" /></td>
+						<td><input class="form-control" type="text"
+								th:field="*{pilotFlight[__${rowStat.index}__].destination}" /></td>
+						<td><input class="form-control" type="date"
+								th:field="*{pilotFlight[__${rowStat.index}__].time}" /></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<button type="submit" name="submit">Submit</button>
 	</form>
 </body>
+
 </html>

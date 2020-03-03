@@ -2,141 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<title>Home</title>
+<!-- Latihan 1 
+Dynamic Fragment-->
+	<title th:text="${navigation}"></title>
+
 	<head th:fragment="css">
 		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 	</head>
+
 	<head th:fragment="js">
-		<script th:src="@{/js/bootstrap.min.js}"><</script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
 	</head>
 </head>
 
 <body>
 	<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">APAP</a>
+		<a href="#" class="navbar-brand" th:text="${navigation}"></a>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Home</a>
+					<a href="/" class="nav-link">Home</a>
+				</li>
 			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="addPilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tambah Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="updatePilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Update Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="addFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tambah Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="updateFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Update Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="view-pilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">View Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="listAllFlight" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Daftar Penerbangan</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="deletePilot" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Hapus Pilot</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="delete" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Berhasil!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="update" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Berhasil!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="exist" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Exist!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="add" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Berhasil!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-		<nav th:fragment="notfound1" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tidak Ditemukan!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
-	</nav>
-	<nav th:fragment="notfound2" class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Tidak Ditemukan!</a>
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="/">Home</a>
-			</ul>
-		</div> 
+		</div>
 	</nav>
 </body>
+
 </html>

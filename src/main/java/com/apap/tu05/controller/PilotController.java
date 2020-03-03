@@ -28,23 +28,31 @@ public class PilotController {
 	@Autowired
 	private PilotService pilotService;
 	
-	@RequestMapping("/")private String home() {
+	@RequestMapping("/")private String home(Model model) {
+		String navigation = "HOME";
+		model.addAttribute("navigation", navigation);
 		return "home";
 	}
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.GET)
 	private String add(Model model) {
+		String navigation = "Tambah Pilot";
+		model.addAttribute("navigation", navigation);
 		model.addAttribute("pilot", new PilotModel());
 		return "addPilot";
 	}
 	
 	@RequestMapping(value = "/pilot/add", method = RequestMethod.POST)
-	private String addPilotSubmit(@ModelAttribute PilotModel pilot, @RequestParam(value = "licenseNumber") String licenseNumber) {
+	private String addPilotSubmit(@ModelAttribute PilotModel pilot, @RequestParam(value = "licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilotCheck = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		if(pilotCheck != null) {
+			String navigation = "Exist!";
+			model.addAttribute("navigation", navigation);
 			return "exist";
 		}
 		pilotService.addPilot(pilot);
+		String navigation = "Berhasil!";
+		model.addAttribute("navigation", navigation);
 		return "add";
 	}
 	
@@ -52,6 +60,8 @@ public class PilotController {
 	@RequestMapping(value = "/pilot/view")
 	public String viewPilot(@RequestParam(value = "licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		String navigation = "View Pilot";
+		model.addAttribute("navigation", navigation);
 		model.addAttribute("pilot", pilot);
 //		model.addAttribute("listFlight", pilot.getPilotFlight());
 		return "view-pilot";
@@ -66,12 +76,12 @@ public class PilotController {
 //		return "view-pilot";
 //	}
 	
-	// Latihan 1
-    // Path Variable Berdasarkan License Number
 	@RequestMapping(value = "/pilot/view/{licenseNumber}", method = RequestMethod.GET)
 	private String viewPilot1(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		if(pilot == null) {
+			String navigation = "Tidak Ditemukan!";
+			model.addAttribute("navigation", navigation);
 			return "notfound";
 		}
 		model.addAttribute("pilot", pilot);
@@ -79,26 +89,29 @@ public class PilotController {
 		return "view-pilot";
 	}
 //	
-	// Latihan 3
-    // Membuat Fitur Delete Pilot
+
 	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.GET)
 	private String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 			PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 			model.addAttribute("pilot", pilot);
+			String navigation = "Hapus Pilot";
+			model.addAttribute("navigation", navigation);
 			return "deletePilot";
 		}
 	
 	@RequestMapping(value = "/pilot/delete/{licenseNumber}", method = RequestMethod.POST)
-	private String deletePilot(@PathVariable(value = "licenseNumber") String licenseNumber) {
+	private String deletePilot1(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 			pilotService.deletePilot(licenseNumber);
+			String navigation = "Berhasil!";
+			model.addAttribute("navigation", navigation);
 			return "delete";
 		}
 	
-	// Latihan 4
-    // Membuat Fitur Update Pilot
 	@RequestMapping(value = "/pilot/update/{licenseNumber}", method = RequestMethod.GET)
 	private String updatePilot(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 		PilotModel oldPilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		String navigation = "Update Pilot";
+		model.addAttribute("navigation", navigation);
 		model.addAttribute("oldPilot", oldPilot);
 		model.addAttribute("newPilot", new PilotModel());
 		return "updatePilot";
@@ -108,6 +121,8 @@ public class PilotController {
 	private String updatePilot(@ModelAttribute PilotModel newPilot, @PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 		pilotService.updatePilot(licenseNumber, newPilot);
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		String navigation = "Berhasil";
+		model.addAttribute("navigation", navigation);
 		model.addAttribute("pilot", pilot);
 		return "update";
 	}

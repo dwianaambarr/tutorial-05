@@ -7,11 +7,11 @@
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-	<nav th:replace="fragments/fragment :: updateFlight"></nav>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<h2>Hello!</h2>
 	
 	<h3>Update Flight</h3>
-	<form th:action="@{/pilot/{licenseNumber}/flight/update/{flightNumber} (licenseNumber=${pilot.licenseNumber},flightNumber=${oldFlight.flightNumber})}" th:object="${newFlight}" method="POST">
+	<form th:action="@{/pilot/{licenseNumber}/flight/update/{flightNumber} (licenseNumber=${pilot.licenseNumber}, flightNumber=${oldFlight.flightNumber})}" th:object="${newFlight}" method="POST">
 		Flight Number: <br>
 		<input type="text" name="flightNumber" th:field="${oldFlight.flightNumber}"/>
 		<br>

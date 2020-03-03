@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>View All Flight</title>
-    	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 	
@@ -26,7 +27,7 @@ tr:nth-child(even) {
 </head>
 
 <body>
-	<nav th:replace="fragments/fragment :: listAllFlight"></nav>
+	<nav th:replace="fragments/fragment :: navbar"></nav>
     <h2>Daftar Penerbangan</h2>
     <table border="1">
         <tr> 
