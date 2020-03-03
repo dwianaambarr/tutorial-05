@@ -24,6 +24,7 @@
 						<!-- Latihan 2 
 						Menambah Form Handling-->
 						<th><button type="submit" name="addRow">Add Flight</button></th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -36,7 +37,6 @@
 								th:field="*{pilotFlight[__${rowStat.index}__].destination}" /></td>
 						<td><input class="form-control" type="date"
 								th:field="*{pilotFlight[__${rowStat.index}__].time}" /></td>
-						<td></td>
 					</tr>
 				</tbody>
 			</table>

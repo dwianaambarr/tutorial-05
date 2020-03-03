@@ -17,6 +17,8 @@ import com.apap.tu05.service.PilotService;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * FlightController
  * 
@@ -61,7 +63,7 @@ public class FlightController {
 		model.addAttribute("pilot", pilot);
 		return "addFlight";
 	}
-
+	
 	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST,  params = {"submit"})
 	private String submitFlight(@ModelAttribute PilotModel pilot, Model model) {
 		PilotModel currentPilot = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber());

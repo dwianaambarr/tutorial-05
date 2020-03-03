@@ -80,7 +80,7 @@ public class PilotController {
 	private String viewPilot1(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
 		if(pilot == null) {
-			String navigation = "Tidak Ditemukan!";
+			String navigation = "Not Found!";
 			model.addAttribute("navigation", navigation);
 			return "notfound";
 		}
